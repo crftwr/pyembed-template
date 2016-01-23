@@ -3,3 +3,4 @@ build/
 lib/
 Release/
 library.zip
+pyembed-template.VC.opendb

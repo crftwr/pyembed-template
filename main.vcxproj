@@ -163,7 +163,7 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="cmemo.rc" />
+    <ResourceCompile Include="pyembed-template.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />

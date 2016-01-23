@@ -61,6 +61,8 @@ if 1:
     if os.path.exists("lib"):
         shutil.rmtree("lib")
 
+    shutil.copy( "c:/Python35/python35.dll", "python35.dll" )
+
     shutil.copytree( "c:/Python35/DLLs", "lib", ignore=shutil.ignore_patterns("*.pdb","*_d.pyd","*.ico","*.lib") )
 
     shutil.copy( "c:/Python35/Lib/site-packages/PIL/_imaging.cp35-win32.pyd", "lib/_imaging.pyd" )

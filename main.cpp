@@ -37,7 +37,7 @@ int AppMain()
 		}
 	}
 
-	// Environment variable - "PATH"
+	// Setup environment variable "PATH"
 	{
 		std::wstring env_path;
 
@@ -93,7 +93,7 @@ int AppMain()
 
 	// Execute python side main script
 	{
-		PyRun_SimpleString("import cmemo_main\n");
+		PyRun_SimpleString("import main\n");
 	}
 
 	// Termination
