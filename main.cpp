@@ -93,7 +93,14 @@ int AppMain()
 
 	// Execute python side main script
 	{
-		PyRun_SimpleString("import main\n");
+		PyObject * module = PyImport_ImportModule( "main" ) ;
+		if (module == NULL)
+		{
+			PyErr_Print();
+		}
+
+		Py_XDECREF(module);
+		module = NULL;
 	}
 
 	// Termination
@@ -102,7 +109,7 @@ int AppMain()
 	return 0;
 }
 
-#if 0
+#if ! defined(_DEBUG)
 
 int WINAPI WinMain(
 	HINSTANCE hInstance,      /* handle to current instance */
