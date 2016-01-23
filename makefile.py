@@ -60,11 +60,11 @@ if 1:
 if 1:
     if os.path.exists("lib"):
         shutil.rmtree("lib")
+
     shutil.copytree( "c:/Python35/DLLs", "lib", ignore=shutil.ignore_patterns("*.pdb","*_d.pyd","*.ico","*.lib") )
 
-    shutil.copy( "c:/Python35/Lib/site-packages/PIL/_imaging.cp35-win32.pyd", "build/Lib/PIL/_imaging.pyd" )
-    #shutil.copy( "../ckit/ckitcore.pyd", "build/Lib/ckit/ckitcore.pyd" )
-    #shutil.copy( "../pyauto/pyautocore.pyd", "build/Lib/pyauto/pyautocore.pyd" )
-    shutil.copy( "../ckit/ckitcore.pyd", "lib/ckit.ckitcore.pyd" )
-    shutil.copy( "../pyauto/pyautocore.pyd", "lib/pyauto.pyautocore.pyd" )
+    shutil.copy( "c:/Python35/Lib/site-packages/PIL/_imaging.cp35-win32.pyd", "lib/_imaging.pyd" )
+
+    shutil.copy( "../ckit/ckitcore.pyd", "lib/ckitcore.pyd" )
+    shutil.copy( "../pyauto/pyautocore.pyd", "lib/pyautocore.pyd" )
 

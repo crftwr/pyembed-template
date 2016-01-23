@@ -14,21 +14,33 @@ print("cmemo_main 1")
 #    ]
 
 if 1:
-    import importlib
     import importlib.abc
-
-    class SpecialModuleFinder:
+    
+    class SpecialModuleFinder(importlib.abc.MetaPathFinder):
     
         def find_module( self, fullname, path=None ):
 
-            print( "find_module", fullname, path )
+            #print( "find_module", fullname, path )
+            
+            pyd_filename_body = fullname.split(".")[-1]
+            pyd_fullpath = os.path.exists( "./lib/" + pyd_filename_body + ".pyd" )
 
-            if os.path.exists( "./lib/" + fullname + ".pyd" ):
-                return SpecialModuleLoader( fullname, "./lib/" + fullname + ".pyd" )
+            if pyd_fullpath:
+                
+                #print( "exists : ", pyd_filename_body )
+                
+                for importer in sys.meta_path:
 
-    class SpecialModuleLoader(importlib.abc.FileLoader):
-        def get_source(self,fullname):
-            return ""
+                    #print("importer :", importer)
+
+                    if isinstance(importer, self.__class__):
+                        #print("skip")
+                        continue
+
+                    loader = importer.find_module( fullname, None)
+                    if loader:
+                        #print("found loader -", loader)
+                        return loader
 
     sys.meta_path.append(SpecialModuleFinder())
 
