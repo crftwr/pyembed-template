@@ -6,29 +6,16 @@ if 1:
     import importlib.abc
     
     class CustomPydFinder(importlib.abc.MetaPathFinder):
-    
         def find_module( self, fullname, path=None ):
-
-            #print( "find_module", fullname, path )
-            
+            exe_path = os.path.split(sys.argv[0])[0]
             pyd_filename_body = fullname.split(".")[-1]
-            pyd_fullpath = os.path.exists( "./lib/" + pyd_filename_body + ".pyd" )
-
-            if pyd_fullpath:
-                
-                #print( "exists : ", pyd_filename_body )
-                
+            pyd_fullpath = os.path.join( exe_path, "lib", pyd_filename_body + ".pyd" )
+            if os.path.exists(pyd_fullpath):
                 for importer in sys.meta_path:
-
-                    #print("importer :", importer)
-
                     if isinstance(importer, self.__class__):
-                        #print("skip")
                         continue
-
                     loader = importer.find_module( fullname, None)
                     if loader:
-                        #print("found loader -", loader)
                         return loader
 
     sys.meta_path.append(CustomPydFinder())
